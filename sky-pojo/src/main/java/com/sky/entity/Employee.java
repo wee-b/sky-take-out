@@ -16,19 +16,19 @@ public class Employee implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private Long id;
+    private Long id;//
 
-    private String username;
+    private String username;//
 
-    private String name;
+    private String name; //
 
     private String password;
 
-    private String phone;
+    private String phone;//
 
-    private String sex;
+    private String sex;//
 
-    private String idNumber;
+    private String idNumber;//
 
     private Integer status;
 
