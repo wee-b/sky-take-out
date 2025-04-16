@@ -23,7 +23,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collections;
 import java.util.List;
 
 @Slf4j
@@ -43,6 +42,7 @@ public class DishServiceImpl implements DishService {
      * 添加菜品
      * @param dishDTO
      */
+    @Transactional
     public void addDish(DishDTO dishDTO) {
         Dish dish = new Dish();
         BeanUtils.copyProperties(dishDTO, dish);
@@ -101,7 +101,6 @@ public class DishServiceImpl implements DishService {
      * 修改菜品
      * @param dishDTO
      */
-    @AutoFill(value = OperationType.UPDATE)
     public void editDish(DishDTO dishDTO) {
         Dish dish = new Dish();
         BeanUtils.copyProperties(dishDTO, dish);
@@ -147,12 +146,10 @@ public class DishServiceImpl implements DishService {
      * 启用/禁用菜品
      * @param dishId
      */
-    @AutoFill(value = OperationType.UPDATE)
     public void banDish(Long dishId) {
         Dish dish = dishMapper.idQueryDish(dishId);
         int status = dish.getStatus() == StatusConstant.ENABLE ? StatusConstant.DISABLE : StatusConstant.ENABLE;
         dish.setStatus(status);
-        dish.setId(dishId);
         dishMapper.update(dish);
     }
 }
