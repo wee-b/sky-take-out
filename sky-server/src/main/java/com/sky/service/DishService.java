@@ -24,4 +24,12 @@ public interface DishService {
     void deleteDish(List<Long> ids);
 
     void banDish(Long id);
+
+
+    /**
+     * 条件查询菜品和口味
+     * @param
+     * @return
+     */
+    List<DishVO> listWithFlavor(Long categoryId);
 }

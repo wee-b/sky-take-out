@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Select;
 import java.util.List;
 
 @Mapper
-public interface DishFlavorsMapper {
+public interface DishFlavorMapper {
 
     void save(List<DishFlavor> flavors);
 
