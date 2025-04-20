@@ -18,6 +18,7 @@ import com.sky.vo.DishVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -155,7 +156,7 @@ public class DishServiceImpl implements DishService {
 
     /**
      * 条件查询菜品和口味
-     * @param dish
+     * @param
      * @return
      */
     public List<DishVO> listWithFlavor(Long categoryId) {
