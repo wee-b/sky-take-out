@@ -42,4 +42,37 @@
         </set>
         where id = #{id}
     </update>
+
+    <select id="pageQuery" resultType="com.sky.entity.Orders">
+        select * from orders
+        <where>
+            <if test="number != null">
+                and number like concat('%',#{number},'%')
+            </if>
+            <if test="phone != null">
+                and phone like concat('%',#{phone},'%')
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="beginTime != null">
+            #   ****
+                and order_time &gt;= #{beginTime}
+            </if>
+            <if test="endTime != null">
+                and order_time &lt;= #{endTime}
+            </if>
+            <if test="userId != null">
+                and user_id = #{userId}
+            </if>
+        </where>
+    </select>
+    <select id="statistics" resultType="com.sky.vo.OrderStatisticsVO">
+        SELECT
+            SUM(CASE WHEN status = 3 THEN 1 ELSE 0 END) AS confirmed,
+            SUM(CASE WHEN status = 4 THEN 1 ELSE 0 END) AS deliveryInProgress,
+            SUM(CASE WHEN status = 2 THEN 1 ELSE 0 END) AS toBeConfirmed
+        FROM
+            orders;
+    </select>
 </mapper>
