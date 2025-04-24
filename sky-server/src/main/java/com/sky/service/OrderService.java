@@ -29,6 +29,8 @@ public interface OrderService {
     PageResult historyOrders(OrdersPageQueryDTO ordersPageQueryDTO,boolean isUser);
 
     void repetition(Long id);
+
+    void reminder(Long id);
     //    =========  管理端  =========
 
     OrderStatisticsVO statistics();
