@@ -1,17 +1,16 @@
 package com.sky.mapper;
 
-import com.sky.dto.OrdersCancelDTO;
-import com.sky.dto.OrdersConfirmDTO;
-import com.sky.dto.OrdersPageQueryDTO;
-import com.sky.dto.OrdersRejectionDTO;
+import com.sky.dto.*;
 import com.sky.entity.Orders;
 import com.sky.vo.OrderStatisticsVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface OrderMapper {
@@ -48,4 +47,13 @@ public interface OrderMapper {
 
     @Update("update orders set status = #{OrderStatus},pay_status = #{OrderPaidStatus},checkout_time = #{check_out_time} where number = #{orderNumber}")
     void updateStatus(Integer OrderPaidStatus,Integer OrderStatus,LocalDateTime check_out_time,String orderNumber);
+
+    Double sumByMap(Map map);
+
+//    @Select("select * from orders where order_time < #{end} and order_time > #{begin} order by order_time")
+    List<Orders> dateRangeQuery(Map map);
+//    List<Orders> dateRangeQuery(LocalDate begin, LocalDate end);
+
+//    @Select("select od.name,sum(od.id) from order_detail od,orders o where od.order_id = o.id and o.status = 5 and o.order_time > and o.order_time < ")
+    List<GoodsSalesDTO> getSalesTop(LocalDateTime begin, LocalDateTime end);
 }
