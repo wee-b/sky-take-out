@@ -50,6 +50,8 @@ public interface OrderMapper {
 
     Double sumByMap(Map map);
 
+    Integer countByMap(Map map);
+
 //    @Select("select * from orders where order_time < #{end} and order_time > #{begin} order by order_time")
     List<Orders> dateRangeQuery(Map map);
 //    List<Orders> dateRangeQuery(LocalDate begin, LocalDate end);
